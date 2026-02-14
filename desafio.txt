@@ -1,0 +1,245 @@
+Caso de teste 1: Teste de Login positivo
+
+Abrir a página
+
+Digitar o usuário student no campo Username
+
+Digitar a senha Password123 no campo Password
+
+Clicar no botão Submit
+
+Verificar se a nova URL da página contém practicetestautomation.com/logged-in-successfully/
+
+Verificar se a nova página contém o texto esperado (Congratulations ou successfully logged in)
+
+Verificar se o botão Log out está visível na nova página
+
+
+
+Caso de teste 2: Teste negativo de usuário
+
+Abrir a página
+
+Digitar o usuário incorrectUser no campo Username
+
+Digitar a senha Password123 no campo Password
+
+Clicar no botão Submit
+
+Verificar se a mensagem de erro é exibida
+
+Verificar se o texto da mensagem de erro é Your username is invalid!
+
+
+
+Caso de teste 3: Teste negativo de senha
+
+Abrir a página
+
+Digitar o usuário student no campo Username
+
+Digitar a senha incorrectPassword no campo Password
+
+Clicar no botão Submit
+
+Verificar se a mensagem de erro é exibida
+
+Verificar se o texto da mensagem de erro é Your password is invalid!
+
+_______________________________________________________________________________
+
+Caso de teste 1: NoSuchElementException
+
+Abrir a página
+
+Clicar no botão Add
+
+Verificar se o campo de input da Linha 2 é exibido
+
+A Linha 2 não aparece imediatamente. Este teste irá falhar com org.openqa.selenium.NoSuchElementException se não houver uma espera adequada (explicit wait ou fluent wait).
+
+
+
+Caso de teste 2: ElementNotInteractableException
+
+Abrir a página
+
+Clicar no botão Add
+
+Aguardar o carregamento da segunda linha
+
+Digitar texto no segundo campo de input
+
+Clicar no botão Save usando o locator By.name("Save")
+
+Verificar se o texto foi salvo
+
+Esta página contém dois elementos com o atributo name="Save".
+O primeiro está invisível. Ao tentar clicar nesse elemento invisível, ocorre ElementNotInteractableException.
+
+Anteriormente essa ação lançava ElementNotVisibleException, mas agora lança uma exceção diferente (não está claro se é mudança de comportamento do Selenium ou bug).
+
+
+
+Caso de teste 3: InvalidElementStateException
+
+Abrir a página
+
+Limpar o campo de input
+
+Digitar texto no campo de input
+
+Verificar se o texto foi alterado
+
+O campo de input está desabilitado.
+Tentar limpar um campo desabilitado gera InvalidElementStateException.
+
+É necessário primeiro habilitar a edição clicando no botão Edit.
+
+Se tentarmos digitar texto diretamente no campo desabilitado, receberemos ElementNotInteractableException, como no Caso de teste 2.
+
+
+
+Caso de teste 4: StaleElementReferenceException
+
+Abrir a página
+
+Localizar o elemento de texto das instruções
+
+Clicar no botão Add
+
+Verificar se o elemento de instruções não está mais exibido
+
+O elemento de instruções é removido do DOM quando a segunda linha é adicionada.
+Por isso não é mais possível interagir com ele. Caso contrário, ocorrerá StaleElementReferenceException.
+
+
+
+Caso de teste 5: TimeoutException
+
+Abrir a página
+
+Clicar no botão Add
+
+Aguardar 3 segundos para que o segundo campo de input seja exibido
+
+Verificar se o segundo campo de input está visível
+
+A segunda linha aparece após aproximadamente 5 segundos.
+Um timeout de 3 segundos não é suficiente, resultando em TimeoutException durante a execução do teste.
+
+_______________________________________________________________________________
+
+Caso de teste 1: Filtro de idioma → Java
+
+Abrir a página
+
+Selecionar Language = Java
+
+Verificar se apenas cursos de Java estão visíveis
+
+Falha se o filtro de idioma não for reaplicado ao alterar a seleção.
+
+
+
+Caso de teste 2: Filtro de nível → Apenas Beginner
+
+Abrir a página
+
+Desmarcar Intermediate e Advanced
+
+Verificar se apenas cursos Beginner estão visíveis
+
+Falha se níveis desmarcados ainda passarem pelo filtro.
+
+
+
+Caso de teste 3: Mínimo de matrículas → 10.000+
+
+Abrir a página
+
+Abrir o dropdown “Min enrollments” e escolher 10,000+
+
+Verificar se todas as linhas visíveis mostram matrículas ≥ 10.000
+
+Falha se a comparação numérica for feita como string (comparação lexicográfica).
+
+
+
+Caso de teste 4: Filtros combinados → Python + Beginner + 10.000+
+
+Abrir a página
+
+Selecionar Language = Python
+
+Desmarcar Intermediate e Advanced
+
+Definir Min enrollments = 10,000+
+
+Verificar se apenas cursos Python Beginner com ≥ 10.000 matrículas estão visíveis
+
+Falha se cursos incorretos permanecerem visíveis.
+
+
+
+Caso de teste 5: Estado sem resultados
+
+Abrir a página
+
+Selecionar uma combinação que não gere resultados (ex.: idioma com nível inexistente)
+
+Verificar se a mensagem “No matching courses.” é exibida
+
+Falha se o estado de “sem dados” não for atualizado corretamente conforme os filtros.
+
+
+
+Caso de teste 6: Visibilidade e comportamento do botão Reset
+
+Abrir a página
+
+Alterar qualquer filtro
+
+Verificar se o botão Reset se torna visível
+
+Clicar em Reset
+
+Verificar se:
+
+Language = Any
+
+Todos os Levels estão marcados
+
+Min enrollments = Any
+
+Verificar se o botão Reset fica oculto novamente e todas as linhas ficam visíveis
+
+Falha se os valores padrão ou a lógica de visibilidade não forem restaurados corretamente.
+
+
+
+Caso de teste 7: Ordenação por Enrollments (crescente, numérica)
+
+Abrir a página
+
+Definir Sort by = Enrollments
+
+Verificar se as linhas visíveis estão ordenadas da menor para a maior quantidade de matrículas
+
+Verificar se números com vírgulas são ordenados corretamente
+
+Falha se a ordenação for feita de forma lexicográfica em vez de numérica.
+
+
+
+Caso de teste 8: Ordenação por Course Name (alfabética)
+
+Abrir a página
+
+Definir Sort by = Course Name
+
+Verificar se as linhas visíveis estão ordenadas de A → Z pelo nome do curso
+
+Verificar se a ordem é atualizada após alterar os filtros
+
+Falha se a ordenação não for reaplicada dinamicamente após mudanças nos filtros.

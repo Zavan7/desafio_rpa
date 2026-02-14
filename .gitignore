@@ -1,10 +1,79 @@
-# Python-generated files
+# =========================
+# Ambiente virtual (uv)
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Cache Python
+# =========================
 __pycache__/
-*.py[oc]
+*.py[cod]
+*$py.class
+
+# Distribuição / build
 build/
 dist/
-wheels/
-*.egg-info
+*.egg-info/
+.eggs/
 
-# Virtual environments
-.venv
+# =========================
+# Arquivos de log
+# =========================
+*.log
+logs/
+log/
+
+# =========================
+# Arquivos temporários
+# =========================
+*.tmp
+*.swp
+*.bak
+*.~*
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# =========================
+# Playwright (se usar)
+# =========================
+playwright-report/
+test-results/
+blob-report/
+browser-data/
+
+# =========================
+# Arquivos de automação
+# =========================
+downloads/
+screenshots/
+screens/
+output/
+reports/
+
+# =========================
+# Coverage / Test
+# =========================
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# =========================
+# Variáveis de ambiente
+# =========================
+.env
+.env.*
+!.env.example
