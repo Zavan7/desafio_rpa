@@ -14,7 +14,8 @@ class InitialPage:
         :param page: Description
         :type page: Page
 
-        Tenta acessar a URL, e localizar o seletor, para iniciar o desafio
+        Tenta acessar a URL, e localizar o seletor, para acessar o primeiro
+        desafio
         '''
 
         
@@ -31,10 +32,10 @@ class InitialPage:
                 return None
             
             button.click()
-            print('Log de sucesso aqui')
+            print('Log de SUCESSO aqui (Abrimos a página)')
             return True
         
         except Exception as e:
-            print(f'Log de erro aqui: {e}')
+            print(f'Log de erro aqui (Erro ao abrir a página): {e}')
             return False
             
