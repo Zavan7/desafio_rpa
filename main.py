@@ -41,13 +41,14 @@ def first_challenge():
         login_page.challenge_page()
         login_page.first_login_challeng(LOGIN_USER, PASSWORD_USER)
 
+        
+        desired_url = 'practicetestautomation.com/logged-in-successfully/'
+
+        modified = ModifiedUrl(page)
+        modified.validate_url_contains(desired_url)
         sleep(5)
 
         browser.close()
-
-
-def challenge_validation():
-    ...
 
 if __name__ == '__main__':
     first_challenge()
